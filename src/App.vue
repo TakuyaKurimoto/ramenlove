@@ -1,28 +1,39 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-app-bar app color="teal lighten-3" dark>
+      <div class="d-flex align-center">
+        <v-toolbar-title class="display-1 font-weight-bold"
+          >Application Name</v-toolbar-title
+        >
+      </div>
+    </v-app-bar>
+
+    <v-main>
+      <Frame />
+      <div>
+        <Clock class="clock" />
+      </div>
+      <Train />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Frame from "./components/Frame";
+import Clock from "@/components/Clock";
+import Train from "@/components/Train";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  name: "App",
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {
+    Frame,
+    Clock,
+    Train,
+  },
+
+  data: () => ({
+    //
+  }),
+};
+</script>
