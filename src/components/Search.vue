@@ -4,16 +4,16 @@ https://blog.capilano-fw.com/?p=1482#i-3
 https://www.yoshida.red/2020/04/30/vue-autocomplete/
 -->
 <div class=container>
-  <div class="about flex flex-col items-center">
-    <input type="text" class="bg-gray-300 px-4 py-2" autocomplete="off" v-model="state" @input="filterStates" @focus="modal = true"><br>
-    
-    <div v-if="filteredStates && modal">
-      <ul class="w-48 bg-gray-800 text-white">
-        <li v-for="filteredState in filteredStates" class="py-2 border-b cursor-pointer" :key="filteredState" @click="setState(filteredState)">{{ filteredState[1] }}</li>
-      </ul>
-    </div>
+    <div class="about flex flex-col items-center">
+      <img src="@/assets/yamanote.png" class="yamanote_logo">
+      <input type="text" class="bg-gray-300 px-4 py-2" autocomplete="off" v-model="state" @input="filterStates" @focus="modal = true"><br>
+      <div v-if="filteredStates && modal">
+        <ul class="w-48 bg-gray-800 text-white">
+          <li v-for="filteredState in filteredStates" class="py-2 border-b cursor-pointer" :key="filteredState" @click="setState(filteredState)">{{ filteredState[1] }}</li>
+        </ul>
+      </div>
         <label v-for="(label,id) in radioButtonOptions" v-bind:key="id">
-            <input type="radio" name="music" :value="id" v-model="radioButtonValue" >{{ label }}
+          <input type="radio" name="music" :value="id" v-model="radioButtonValue" >{{ label }}
         </label>
         <button type="button" @click="changeRadioButton()">ボタン</button>
         <br>
@@ -83,4 +83,10 @@ export default {
 .container{
     text-align: center;
 }
+
+.yamanote_logo{
+  width: 48px;
+  height: 48px;
+}
+
 </style>
