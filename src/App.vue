@@ -1,26 +1,31 @@
 <template>
+<!--参考記事
+https://blog.capilano-fw.com/?p=1482#i-3
+https://www.yoshida.red/2020/04/30/vue-autocomplete/
+-->
   <div class="about flex flex-col items-center">
     <input type="text" class="bg-gray-300 px-4 py-2" autocomplete="off" v-model="state" @input="filterStates" @focus="modal = true"><br>
-    <div id="app">
-	<input type="checkbox" v-model="checkValue" value="外回り"> 外回り
-	<input type="checkbox" v-model="checkValue" value="内回り"> 内回り
-	<p>{{ checkValue }}</p>
-</div>
+    
     <div v-if="filteredStates && modal">
       <ul class="w-48 bg-gray-800 text-white">
         <li v-for="filteredState in filteredStates" class="py-2 border-b cursor-pointer" :key="filteredState" @click="setState(filteredState)">{{ filteredState[1] }}</li>
       </ul>
     </div>
-  </div>
+  
+        
+        <label v-for="(label,id) in radioButtonOptions" v-bind:key="id">
+            <input type="radio" name="music" :value="id" v-model="radioButtonValue" >{{ label }}
+        </label>
+        <button type="button" @click="changeRadioButton()">ボタン</button>
+        <br>
+        変数の中身： {{ radioButton }}({{ state }})
+          </div> 
+
 </template>
 
 <script>
-var app = new Vue({
-    el: '#app',
-    data: {
-  	  checkValue: [],		
-    }
-  })
+
+
 export default {
   
 
@@ -36,6 +41,12 @@ export default {
         ['はらじゅく','原宿'], ['しんおおくぼ','新大久保'], ['たかだのばば', '高田馬場'],['めじろ','目白']
       ],
       filteredStates: [],
+      radioButtonValue: 1, // 初期値（ロック）
+      radioButtonOptions: {
+                1: '外回り',
+                2: '内回り',
+            }
+      
     }
   },
   mounted() {
@@ -53,6 +64,14 @@ export default {
     setState(state) {
       this.state = state[1];
       this.modal = false;
+    },
+    changeRadioButton() {
+      this.radioButtonValue = 3; // クラシックへ変更
+    }
+  },
+  computed: {
+    radioButton() {
+      return this.radioButtonOptions[this.radioButtonValue];
     }
   },
   watch: {
