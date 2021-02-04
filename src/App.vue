@@ -10,9 +10,12 @@
 
     <v-main>
       <Frame />
+      <Clock />
+      <!--
       <div>
         <Clock class="clock" />
       </div>
+      -->
       <Search />
       <Train />
     </v-main>
@@ -26,7 +29,7 @@ import Search from "@/components/Search";
 import Train from "@/components/Train";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     Frame,
