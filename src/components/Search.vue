@@ -6,14 +6,18 @@ https://www.yoshida.red/2020/04/30/vue-autocomplete/
   <div class="container">
     <div class="about flex flex-col items-center">
       <img src="@/assets/yamanote.png" class="yamanote_logo" />
-      <input
-        type="text"
-        class="bg-gray-300 px-4 py-2"
-        autocomplete="off"
-        v-model="state"
-        @input="filterStates"
-        @focus="modal = true"
-      /><br />
+
+      <div class="window">
+        <input
+          type="text"
+          autocomplete="off"
+          v-model="state"
+          placeholder="駅名"
+          @input="filterStates"
+          @focus="modal = true"
+        />
+      </div>
+      <br />
       <div v-if="filteredStates && modal">
         <ul class="w-48 bg-gray-800 text-white">
           <li
@@ -26,15 +30,21 @@ https://www.yoshida.red/2020/04/30/vue-autocomplete/
           </li>
         </ul>
       </div>
-      <label v-for="(label, id) in radioButtonOptions" v-bind:key="id">
+
+      <label v-for="(mawari, id) in mawaris" v-bind:key="id">
         <input
           type="radio"
           name="music"
           :value="id"
           v-model="radioButtonValue"
-        />{{ label }}
+        />{{ mawari }}
       </label>
-      <button type="button" @click="changeRadioButton()">ボタン</button>
+
+      <br />
+      <div class="window">
+        <input type="text" v-model="time" placeholder="時刻" />
+      </div>
+      <br />
       <br />
       <!--変数の中身： {{ radioButton }}({{ state }})-->
     </div>
@@ -45,6 +55,7 @@ https://www.yoshida.red/2020/04/30/vue-autocomplete/
 export default {
   data: function() {
     return {
+      time: "",
       state: "",
       modal: false,
       states: [
@@ -79,7 +90,7 @@ export default {
       ],
       filteredStates: [],
       radioButtonValue: 1, // 初期値（ロック）
-      radioButtonOptions: {
+      mawaris: {
         1: "外回り",
         2: "内回り",
       },
@@ -101,13 +112,16 @@ export default {
       this.state = state[1];
       this.modal = false;
     },
-    changeRadioButton() {
+
+    /*changeRadioButton() {
       this.radioButtonValue = 3; // クラシックへ変更
     },
+    */
   },
+
   computed: {
     radioButton() {
-      return this.radioButtonOptions[this.radioButtonValue];
+      return this.mawaris[this.radioButtonValue];
     },
   },
   watch: {
@@ -119,12 +133,23 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
 .container {
   text-align: center;
+}
+
+input {
+  font-size: 18px;
+  color: gray;
+  background-color: whitesmoke;
+  height: 36px;
+  border-radius: 4px;
 }
 
 .yamanote_logo {
   width: 48px;
   height: 48px;
+  margin-bottom: 24px;
 }
 </style>

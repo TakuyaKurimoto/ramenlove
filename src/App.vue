@@ -17,7 +17,10 @@
       </div>
       -->
       <Search />
+      <Props :state="state" :radioButton="radioButton" :time="time"></Props>
+      <!--<Add></Add>-->
       <Train />
+      <!-----③これよりProps------>
     </v-main>
   </v-app>
 </template>
@@ -27,6 +30,8 @@ import Frame from "./components/Frame";
 import Clock from "@/components/Clock";
 import Search from "@/components/Search";
 import Train from "@/components/Train";
+import Props from "@/components/Props";
+//import Add from "@/components/Add.vue";
 
 export default {
   name: "App",
@@ -36,10 +41,16 @@ export default {
     Clock,
     Search,
     Train,
+    Props,
+    //Add,
   },
 
-  data: () => ({
-    //
-  }),
+  data: function() {
+    return {
+      time: "",
+      state: "",
+      radioButton: "",
+    };
+  },
 };
 </script>

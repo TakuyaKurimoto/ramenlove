@@ -4,7 +4,7 @@
       <div class="station">
         <div class="vehicles first">
           <p>08:00 発</p>
-          <div class="vehicle-top"></div>
+
           <div class="vehicle empty-condition">○</div>
           <div class="vehicle empty-condition">○</div>
           <div class="vehicle empty-condition">×</div>
@@ -14,7 +14,7 @@
         </div>
         <div class="vehicles second">
           <p>08:10 発</p>
-          <div class="vehicle-top"></div>
+
           <div class="vehicle empty-condition">△</div>
           <div class="vehicle empty-condition">△</div>
           <div class="vehicle empty-condition">×</div>
@@ -47,6 +47,7 @@ p {
 .vehicles {
   display: flex;
   flex-direction: row;
+  margin: 12px;
 }
 .vehicle {
   display: flex;
@@ -60,15 +61,6 @@ p {
   width: 120px;
   background-color: gray;
   border-radius: 9px;
-}
-.vehicle-top {
-  padding: 0.5em;
-  margin: 3px;
-  height: 90px;
-  width: 60px;
-  border-top: 30px solid transparent;
-  border-right: 30px solid gray;
-  border-bottom: 30px solid transparent;
 }
 
 .empty-condition {
