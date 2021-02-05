@@ -2,11 +2,11 @@
   <div class="container">
     <v-btn color="error" @click="accumulations()">検索</v-btn>
     <ul>
-      <li v-for="item in stations" :key="item.id">
+      <div v-for="item in stations" :key="item.id">
         {{ item.syuppatsu }},{{ item.time }}発,{{ item.mawari }}<br />
         1号車：{{ item.gosya1 }},2号車：{{ item.gosya2 }},3号車{{ item.gosya3
         }}<br />
-      </li>
+      </div>
     </ul>
 
     <div class="station">
@@ -17,9 +17,15 @@
           </div>
         </div>
 
-        <div class="vehicle empty-condition">○</div>
-        <div class="vehicle empty-condition">○</div>
-        <div class="vehicle empty-condition">×</div>
+        <div class="vehicle empty-condition">
+          <div v-for="item in stations" :key="item.id">{{ item.gosya1 }}</div>
+        </div>
+        <div class="vehicle empty-condition">
+          <div v-for="item in stations" :key="item.id">{{ item.gosya2 }}</div>
+        </div>
+        <div class="vehicle empty-condition">
+          <div v-for="item in stations" :key="item.id">{{ item.gosya3 }}</div>
+        </div>
         <div class="vehicle empty-condition">×</div>
         <div class="vehicle empty-condition">△</div>
         <div class="vehicle empty-condition">△</div>
