@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <button @click="accumulations()">検索</button>
+    <v-btn color="error" @click="accumulations()">検索</v-btn>
     <ul>
       <li v-for="item in stations" :key="item.id">
         {{ item.syuppatsu }},{{ item.time }}発,{{ item.mawari }}<br />
@@ -83,7 +83,7 @@ export default {
   },
 
   methods: {
-    accumulations() {
+    accumulations: function() {
       this.stations = this.dates;
       this.stations = this.stations.filter((station) => {
         //stations（全列車のデータ）から周回方向が一致している物だけを取り出す
@@ -144,5 +144,9 @@ export default {
 .yamanote_logo {
   width: 48px;
   height: 48px;
+}
+
+v-btn {
+  color: white;
 }
 </style>
