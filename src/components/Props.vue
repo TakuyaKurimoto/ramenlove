@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <v-btn color="error" @click="accumulations()">検索</v-btn>
+    <v-btn color="primary" @click="accumulations()">検索</v-btn>
+
     <ul>
       <div v-for="item in stations" :key="item.id">
         {{ item.syuppatsu }},{{ item.time }}発,{{ item.mawari }}<br />
