@@ -8,6 +8,37 @@
         }}<br />
       </li>
     </ul>
+
+    <div class="station">
+      <div class="vehicles first">
+        <ul>
+          <li v-for="item in stations" :key="item.id">
+            {{ item.time }}発<br />
+          </li>
+        </ul>
+
+        <div class="vehicle empty-condition">○</div>
+        <div class="vehicle empty-condition">○</div>
+        <div class="vehicle empty-condition">×</div>
+        <div class="vehicle empty-condition">×</div>
+        <div class="vehicle empty-condition">△</div>
+        <div class="vehicle empty-condition">△</div>
+      </div>
+      <div class="vehicles second">
+        <ul>
+          <li v-for="item in stations" :key="item.id">
+            {{ item.time }}発<br />
+          </li>
+        </ul>
+
+        <div class="vehicle empty-condition">△</div>
+        <div class="vehicle empty-condition">△</div>
+        <div class="vehicle empty-condition">×</div>
+        <div class="vehicle empty-condition">×</div>
+        <div class="vehicle empty-condition">○</div>
+        <div class="vehicle empty-condition">○</div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -137,6 +168,8 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
 .container {
   text-align: center;
 }
@@ -148,5 +181,38 @@ export default {
 
 v-btn {
   color: white;
+}
+
+.container {
+  padding: 2%;
+}
+
+p {
+  font-family: "Varela Round", monospace;
+}
+
+.vehicles {
+  display: flex;
+  flex-direction: row;
+  margin: 12px;
+}
+.vehicle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1;
+  z-index: 1;
+  padding: 0.5em;
+  margin: 3px;
+  height: 90px;
+  width: 120px;
+  background-color: gray;
+  border-radius: 9px;
+}
+
+.empty-condition {
+  text-align: center;
+  font-size: 24px;
+  color: #fff;
 }
 </style>

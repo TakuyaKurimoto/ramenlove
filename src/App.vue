@@ -59,7 +59,7 @@ https://www.yoshida.red/2020/04/30/vue-autocomplete/
         <!-----③これよりProps------>
         <Props :state="state" :radioButton="radioButton" :time="time"></Props>
         <Add></Add>
-        <Train />
+        <!--<Train />-->
       </v-main>
     </v-app>
   </div>
@@ -68,7 +68,6 @@ https://www.yoshida.red/2020/04/30/vue-autocomplete/
 <script>
 import Frame from "./components/Frame";
 import Clock from "@/components/Clock";
-import Train from "@/components/Train";
 import Props from "@/components/Props";
 import Add from "@/components/Add.vue";
 
@@ -78,7 +77,6 @@ export default {
   components: {
     Frame,
     Clock,
-    Train,
     Props,
     Add,
   },
