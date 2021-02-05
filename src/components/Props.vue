@@ -11,11 +11,11 @@
 
     <div class="station">
       <div class="vehicles first">
-        <ul>
-          <li v-for="item in stations" :key="item.id">
+        <div class="syuppatsu">
+          <div v-for="item in stations" :key="item.id">
             {{ item.time }}発<br />
-          </li>
-        </ul>
+          </div>
+        </div>
 
         <div class="vehicle empty-condition">○</div>
         <div class="vehicle empty-condition">○</div>
@@ -25,11 +25,11 @@
         <div class="vehicle empty-condition">△</div>
       </div>
       <div class="vehicles second">
-        <ul>
-          <li v-for="item in stations" :key="item.id">
+        <div class="syuppatsu">
+          <div v-for="item in stations" :key="item.id">
             {{ item.time }}発<br />
-          </li>
-        </ul>
+          </div>
+        </div>
 
         <div class="vehicle empty-condition">△</div>
         <div class="vehicle empty-condition">△</div>
@@ -214,5 +214,9 @@ p {
   text-align: center;
   font-size: 24px;
   color: #fff;
+}
+
+.syuppatsu {
+  font-family: "Varela Round", monospace;
 }
 </style>
