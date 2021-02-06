@@ -50,6 +50,8 @@
   </div>
 </template>
 <script>
+import firebase from 'firebase'
+
 export default {
   props: ["radioButton", "state", "time"],
   data: function() {
@@ -123,7 +125,26 @@ export default {
   },
 
   methods: {
-    accumulations: function() {
+    accumulations: async function(around, stationName, time) {
+      const db = firebase.firestore()
+      const snapShot = await db.collection('trains').get();
+      const trains = snapShot.docs.map(x => x.data());
+      // 時間が近い駅が止まる電車を探す
+      const searchedTrains = trains
+        .filter(x => x.around === around)
+        .map(x => {
+          const timeTable = x.timeTables
+            .filter(y => y.stationName === stationName)
+            .find(y => y.time - time > 0);
+          return ({
+            ...x,
+            timeTable,
+            waitingTime: timeTable.time ? timeTable.time - time : undefined,
+          })
+        })
+        .filter(x => x.waitingTime !== undefined)
+        .sort((a, b) => a.waitingTime >= b.waitingTime)
+      this.trains = searchedTrains;
       this.stations = this.dates;
       this.stations = this.stations.filter((station) => {
         //stations（全列車のデータ）から周回方向が一致している物だけを取り出す
