@@ -12,6 +12,8 @@
 
     <div class="station">
       <div class="vehicles first">
+        <div id="box"></div>
+
         <div class="syuppatsu">
           <div v-for="item in stations" :key="item.id">
             {{ item.time }}発<br />
@@ -31,6 +33,7 @@
         <div class="vehicle empty-condition">△</div>
         <div class="vehicle empty-condition">△</div>
       </div>
+
       <div class="vehicles second">
         <div class="syuppatsu">
           <div v-for="item in stations" :key="item.id">
