@@ -3,6 +3,7 @@
 https://blog.capilano-fw.com/?p=1482#i-3
 https://www.yoshida.red/2020/04/30/vue-autocomplete/
 -->
+
   <div class="container">
     <v-app>
       <v-app-bar app color="teal lighten-3" dark>
@@ -29,9 +30,9 @@ https://www.yoshida.red/2020/04/30/vue-autocomplete/
             <div v-if="filteredStates && modal">
               <ul class="w-48 bg-gray-800 text-white">
                 <li
-                  v-for="filteredState in filteredStates"
+                  v-for="(filteredState, index) in filteredStates"
                   class="py-2 border-b cursor-pointer"
-                  :key="filteredState"
+                  :key="index"
                   @click="setState(filteredState)"
                 >
                   {{ filteredState[1] }}
@@ -58,7 +59,6 @@ https://www.yoshida.red/2020/04/30/vue-autocomplete/
         <Frame />
         <!-----③これよりProps------>
         <Props :state="state" :radioButton="radioButton" :time="time"></Props>
-        <!--<Add></Add>-->
       </v-main>
     </v-app>
   </div>
@@ -68,7 +68,6 @@ https://www.yoshida.red/2020/04/30/vue-autocomplete/
 import Frame from "./components/Frame";
 import Clock from "@/components/Clock";
 import Props from "@/components/Props";
-//import Add from "@/components/Add.vue";
 
 export default {
   name: "App",
@@ -77,7 +76,6 @@ export default {
     Frame,
     Clock,
     Props,
-    //Add,
   },
   data: function() {
     return {

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <v-btn color="primary" @click="accumulations()">検索</v-btn>
-
+    <v-btn color="primary" @click="accumulations(); getRandom(50,100)">検索</v-btn>
+    <p>テスト: {{ num }}</p>
     <ul>
       <div v-for="item in stations" :key="item.id">
         {{ item.syuppatsu }},{{ item.time }}発,{{ item.mawari }}<br />
@@ -10,45 +10,43 @@
       </div>
     </ul>
 
-    <div class="station">
-      <div class="vehicles first">
-        <div id="box"></div>
-
+    <!--<div class="station">-->
+      <!--<div class="vehicles first">-->
         <div class="syuppatsu">
           <div v-for="item in stations" :key="item.id">
             {{ item.time }}発<br />
           </div>
         </div>
-
-        <div class="vehicle empty-condition">
-          <div v-for="item in stations" :key="item.id">{{ item.gosya1 }}</div>
-        </div>
-        <div class="vehicle empty-condition">
-          <div v-for="item in stations" :key="item.id">{{ item.gosya2 }}</div>
-        </div>
-        <div class="vehicle empty-condition">
-          <div v-for="item in stations" :key="item.id">{{ item.gosya3 }}</div>
-        </div>
-        <div class="vehicle empty-condition">×</div>
-        <div class="vehicle empty-condition">△</div>
-        <div class="vehicle empty-condition">△</div>
-      </div>
-
-      <div class="vehicles second">
-        <div class="syuppatsu">
+        <div class="eki">
           <div v-for="item in stations" :key="item.id">
-            {{ item.time }}発<br />
-          </div>
+        <div class="vehicle empty-condition">
+          {{ item.gosya1 }}
         </div>
-
-        <div class="vehicle empty-condition">△</div>
-        <div class="vehicle empty-condition">△</div>
-        <div class="vehicle empty-condition">×</div>
-        <div class="vehicle empty-condition">×</div>
-        <div class="vehicle empty-condition">○</div>
-        <div class="vehicle empty-condition">○</div>
-      </div>
-    </div>
+        <div class="vehicle empty-condition">
+          {{ item.gosya2 }}
+        </div>
+        <div class="vehicle empty-condition">
+          {{ item.gosya3 }}
+        </div>
+        </div>
+        </div>
+      
+        <!--
+        <div class="vehicles second">
+          <div class="syuppatsu">
+            <div v-for="item in stations" :key="item.id">
+              {{ item.time }}発<br />
+            </div>
+          </div>
+          <div class="vehicle empty-condition">△</div>
+          <div class="vehicle empty-condition">△</div>
+          <div class="vehicle empty-condition">×</div>
+          <div class="vehicle empty-condition">×</div>
+          <div class="vehicle empty-condition">○</div>
+          <div class="vehicle empty-condition">○</div> 
+        </div>
+        -->
+       <!--</div>-->
   </div>
 </template>
 <script>
@@ -120,6 +118,7 @@ export default {
       ],
       stations: "",
       number: "",
+      num: "",
     };
   },
 
@@ -173,6 +172,9 @@ export default {
       });
       this.stations = this.stations.slice(0, 3); //取り出す件数指定（この場合は3件）
     },
+    getRandom: function(m,n) {
+      return this.num = Math.floor( Math.random() * ( m + 1 - n ) ) + n;
+    },
   },
 };
 </script>
@@ -207,10 +209,7 @@ p {
   margin: 12px;
 }
 .vehicle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1 1;
+  display:inline-block;
   z-index: 1;
   padding: 0.5em;
   margin: 3px;
@@ -224,9 +223,14 @@ p {
   text-align: center;
   font-size: 24px;
   color: #fff;
+  float: left;
 }
 
 .syuppatsu {
   font-family: "Varela Round", monospace;
+}
+.eki{
+  display: flex;
+  flex-direction:column;
 }
 </style>
