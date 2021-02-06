@@ -8,8 +8,12 @@ https://www.yoshida.red/2020/04/30/vue-autocomplete/
     <v-app>
       <v-app-bar app color="teal lighten-3" dark>
         <div class="d-flex align-center">
+          <img src="@/assets/wheelchair.png" class="wheelchair_logo" />
           <v-toolbar-title class="display-1 font-weight-bold"
-            >Application Name</v-toolbar-title
+            >
+            
+            Application Name
+            </v-toolbar-title
           >
         </div>
       </v-app-bar>
@@ -170,10 +174,16 @@ input {
   height: 36px;
   border-radius: 4px;
 }
+.wheelchair_logo {
+  width: 64px;
+  height: 64px;
+}
+
 
 .yamanote_logo {
   width: 48px;
   height: 48px;
   margin-bottom: 24px;
 }
+
 </style>
