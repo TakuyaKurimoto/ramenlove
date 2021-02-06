@@ -19,6 +19,11 @@ https://www.yoshida.red/2020/04/30/vue-autocomplete/
       </v-app-bar>
       <v-main>
         <Clock />
+        
+        <dir>state : {{state}}</dir>
+        <dir>mawari : {{radioButtonValue}}</dir>
+        <dir>time : {{time}}</dir>
+        
         <div class="about flex flex-col items-center">
           <img src="@/assets/yamanote.png" class="yamanote_logo" />
           <div class="window">
