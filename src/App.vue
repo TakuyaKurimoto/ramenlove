@@ -7,15 +7,16 @@ https://www.yoshida.red/2020/04/30/vue-autocomplete/
   <div class="container">
     <v-app>
       <v-app-bar app color="teal lighten-3" dark>
+        <v-spacer />
         <div class="d-flex align-center">
           <img src="@/assets/wheelchair.png" class="wheelchair_logo" />
-          <v-toolbar-title class="display-1 font-weight-bold"
-            >
-            
-            Application Name
-            </v-toolbar-title
-          >
+            <v-toolbar-title class="display-1 font-weight-bold" align-center>
+              空き状況チェッカー
+            </v-toolbar-title>
+          <img src="@/assets/stroller.png" class="stroller_logo" />
         </div>
+        <v-spacer />
+        
       </v-app-bar>
       <v-main>
         <Clock />
@@ -54,13 +55,16 @@ https://www.yoshida.red/2020/04/30/vue-autocomplete/
             </label>
             <br />
             <div class="window">
-              <input type="text" v-model="time" placeholder="時刻" />
+              
             </div>
             <br />
           </div>
         </div>
 
+
         <Frame />
+
+
         <!-----③これよりProps------>
         <Props :state="state" :radioButton="radioButton" :time="time"></Props>
       </v-main>
@@ -122,6 +126,7 @@ export default {
         1: "外回り",
         2: "内回り",
       },
+      s:"",
     };
   },
   mounted() {
@@ -140,12 +145,9 @@ export default {
       this.state = state[1];
       this.modal = false;
     },
-
-    /*changeRadioButton() {
-      this.radioButtonValue = 3; // クラシックへ変更
-    },
-    */
+    
   },
+    
 
   computed: {
     radioButton() {
@@ -178,7 +180,10 @@ input {
   width: 64px;
   height: 64px;
 }
-
+.stroller_logo {
+  width: 50px;
+  height: 50px;
+}
 
 .yamanote_logo {
   width: 48px;

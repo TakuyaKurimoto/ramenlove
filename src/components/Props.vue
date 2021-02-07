@@ -1,8 +1,7 @@
 <template>
   <div class="container">
-    <v-btn color="primary" @click="accumulations()">検索</v-btn>
-        
-
+    <v-btn color="primary" @click="getNow();;errorcheck();accumulations()">検索</v-btn>
+        <p>{{error}}</p>
         <div class="eki">
           <div v-for="item in trains" :key="item.id">
             {{item.timeTable.station_name}}{{item.timeTable.stop_time}}発,{{item.around}}<br>
@@ -48,6 +47,9 @@ export default {
       num: "",
       trains: [],
       hanrei:"",
+      s:"",
+      getTime:"",
+      error:"",
     };
   },
   computed:{
@@ -71,7 +73,7 @@ export default {
     accumulations: async function() {
       const stationName = this.state;
       const around = this.radioButton;
-      const time = parseInt(this.time, 10);
+      const time = parseInt(this.getTime);
       // console.log(this.state);
       console.log(around);
       console.log(stationName);
@@ -96,8 +98,35 @@ export default {
         .filter(x => x.waitingTime !== undefined)
         .sort((a, b) => a.waitingTime >= b.waitingTime)
       this.trains = searchedTrains.slice(0, 2); 
-      this.hanrei="○：空いてます,△：少し混んでます,×：狭いです"
+
       
+      
+    },
+    getNow() {
+      var now = new Date();
+      var hour = now.getHours();
+      var min = String(now.getMinutes());
+      if (min.length === 1) {
+        min = "0" + min;
+      }
+      this.getTime= String(hour)+min;
+    },
+    errorcheck(){
+      if(
+      this.state=== "東京"||this.state==="神田"||this.state==="秋葉原"||this.state==="御徒町"||this.state==="上野"||
+      this.state==="鶯谷"||this.state==="日暮里"||this.state==="西日暮里"||this.state==="田端"||this.state==="駒込"||
+      this.state==="巣鴨"||this.state==="大塚"||this.state==="池袋"||this.state==="目白"||this.state==="高田馬場"||
+      this.state==="新大久保"||this.state==="新宿"||this.state==="代々木"||this.state==="原宿"||this.state==="渋谷"||
+      this.state==="恵比寿"||this.state==="目黒"||this.state==="五反田"||this.state==="大崎"||this.state==="品川"||
+      this.state==="高輪ゲートウェイ"||this.state==="田町"||this.state==="浜津町"||this.state==="新橋"||this.state==="有楽町"
+      ){
+        this.error="";
+        this.hanrei="○：空いてます,△：少し混んでます,×：狭いです";
+      }
+      else {
+        this.error="駅名が正しくありません";
+        this.hanrei="";
+      }
     },
   },
 };
@@ -140,7 +169,7 @@ p {
   text-align: center;
   font-size: 24px;
   color: #fff;
-  float: left;
+  
 }
 .syuppatsu {
   font-family: "Varela Round", monospace;
